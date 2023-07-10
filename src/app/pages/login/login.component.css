@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+.font-confortaa{
+    font-family: 'Comfortaa', cursive;
+}
+.font-logo{
+    font-size: 70px;
+    background: linear-gradient(to bottom, #FE0202, #A60311);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative; 
+    
+}
