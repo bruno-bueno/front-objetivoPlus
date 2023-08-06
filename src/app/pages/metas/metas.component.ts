@@ -20,6 +20,17 @@ export class MetasComponent implements OnInit {
   obterMetasUsuario(){
     
     this.metasService.obterMetasUsuario(10)
-    .subscribe((Response: any) => console.log(Response));
+    .subscribe((response: any) => {
+      if (response) {
+        console.log(response);
+      } else {
+        console.error("Resposta vazia.");
+      }
+    },
+    (error: any) => {
+      console.error("Ocorreu um erro:", error);
+    }
+    );
+    
   }
 }
