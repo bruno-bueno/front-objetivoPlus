@@ -29,8 +29,7 @@ export class MetasComponent implements OnInit {
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
-    }
-    );
+    });
     
   }
 }

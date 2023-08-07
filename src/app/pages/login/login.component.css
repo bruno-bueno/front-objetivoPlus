@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:host{
+    background-color: #363636;
+}
+
 .font-confortaa{
     font-family: 'Comfortaa', cursive;
 }
@@ -11,4 +20,11 @@
     background-clip: text;
     position: relative; 
     
+}
+
+.faixa{
+    width: 41.94231rem;
+    height: 4.9375rem;
+    transform: rotate(-45deg); 
+    background-color: #A60311; 
 }
