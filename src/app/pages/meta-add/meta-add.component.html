@@ -1,15 +1,26 @@
-<p>meta-add works!</p>
+    <div class="row align-items-center">
+        <div class="col">
 
-<form (ngSubmit)="criarMeta()">
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" [(ngModel)]="meta.titulo" name="titulo" required>
-    
-    <label for="descricao">Descrição:</label>
-    <textarea id="descricao" [(ngModel)]="meta.descricao" name="descricao" required></textarea>
-    
-    <label for="prazo">Prazo:</label>
-    <input type="text" id="prazo" [(ngModel)]="meta.prazo" name="prazo" required>
-    
-    <button type="submit">Criar Meta</button>
-  </form>
-  
+        </div>
+        <div class="col-10 text-center">
+        <h2 class="titulo">Adicionar Objetivo</h2>
+        <form (ngSubmit)="criarMeta()">
+            <input type="text" id="titulo" class="w-100 mt-4 rounded" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
+            
+            <textarea id="descricao" [(ngModel)]="meta.descricao" class="px-2 mt-4 w-100 rounded" placeholder="Descrição:" name="descricao" required></textarea>
+            
+            <div style="float: left;">
+                <input  class="numero" type="text" id="prazo"  class="mt-4 rounded" placeholder="Prazo:" [(ngModel)]="meta.prazo" name="prazo" required >
+                <input type="button" value="Meses" class="rounded m-1 px-1" (click)="adicionarPrazo('mes')">
+                <input type="button" value="Anos" class="rounded px-1" (click)="adicionarPrazo('ano')"><br>
+                <button type="submit" class="rounded px-1">Criar Meta</button>
+            </div>
+            
+            
+        </form>
+        </div>
+        <div class="col">
+            <!-- <div class="linha1"></div>
+            <div class="linha2"></div> -->
+        </div>
+    </div>
