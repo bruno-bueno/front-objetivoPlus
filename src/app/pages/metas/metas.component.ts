@@ -71,8 +71,8 @@ export class MetasComponent implements OnInit {
     
   }
 
-  redirecionarDetalhe(){
-    this.router.navigate(['/meta-detalhe']);
+  redirecionarDetalhe(id: number){
+    this.router.navigate(['/meta-detalhe/'+id]);
   }
 
 }

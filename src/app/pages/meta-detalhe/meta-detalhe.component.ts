@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TarefasService } from 'src/app/services/tarefas.service';
 import { MetasService } from 'src/app/services/metas.service';
 import { IMeta } from 'src/app/interfaces/IMetas';
@@ -10,18 +10,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./meta-detalhe.component.css']
 })
 export class MetaDetalheComponent implements OnInit{
+  id: number = 0;
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
 
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params["id"]
     this.obterMetasUsuario();
     
   }
 
   obterMetasUsuario(){
-    this.metasService.obterMetasPeloId(9)
+    this.metasService.obterMetasPeloId(this.id)
     .subscribe(async (response: any) => {
       if (response) {
         this.metas = response;

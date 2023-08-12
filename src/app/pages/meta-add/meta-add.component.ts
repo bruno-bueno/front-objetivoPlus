@@ -11,6 +11,7 @@ import { TarefasService } from 'src/app/services/tarefas.service';
 export class MetaAddComponent implements OnInit{
   
   meta: IMeta = {
+    id: 0,
     usuario_id: 7,
     titulo: '',
     descricao: '',

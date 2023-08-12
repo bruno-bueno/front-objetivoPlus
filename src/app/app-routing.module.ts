@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path:'cadastro', component: CadastroComponent},
   { path: 'metas', component: MetasComponent},
-  { path: 'meta-detalhe', component: MetaDetalheComponent},
+  { path: 'meta-detalhe/:id', component: MetaDetalheComponent},
   { path: 'meta-add', component: MetaAddComponent},
   { path: 'meta-edit', component: MetaEditComponent}
 ];
