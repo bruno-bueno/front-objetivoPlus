@@ -1,2 +1,28 @@
-<p>digite o id do usuario</p>
-<button (click)="obterMetasUsuario()">receber</button>
+<div class="row align-items-center">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6 text-center">
+        <div *ngIf="metas.length > 0">
+        <h2>Metas do Usuário</h2>
+        <ul style="list-style: none;">
+            
+                <li *ngFor="let meta of metas" class="meta my-5 py-4" >
+                    <a (click)="redirecionarDetalhe()" href="">
+                        <h3>{{ meta.titulo }}</h3>
+                        <p>{{ meta.descricao }}</p>
+                        <div class="progresso mx-5 rounded-pill">0%</div>
+                    </a>
+                </li>
+            
+        </ul>
+        </div>
+        
+        <button routerLink="/meta-add">Adicionar Meta</button>
+          
+    </div>
+    <div class="col-3">
+
+    </div>
+</div>
+

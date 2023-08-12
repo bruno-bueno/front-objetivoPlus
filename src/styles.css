@@ -21,4 +21,22 @@
 
 body {
     background-color: #363636;
+
+}
+
+.meta{
+    background-color: #d9d9d9;
+    border-radius: 1rem;   
+}
+
+.progresso{
+    background-color: #A39C9C;
+}
+
+a{
+    color: inherit; /* Define a cor para herdar do elemento pai */
+    text-decoration: none; /* Remove sublinhado */
+}
+a:hover{
+    color: inherit;
 }

@@ -12,6 +12,7 @@ import { MetasComponent } from './pages/metas/metas.component';
 import { MetaDetalheComponent } from './pages/meta-detalhe/meta-detalhe.component';
 import { MetaAddComponent } from './pages/meta-add/meta-add.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MetaEditComponent } from './pages/meta-edit/meta-edit.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     CadastroComponent,
     MetasComponent,
     MetaDetalheComponent,
-    MetaAddComponent
+    MetaAddComponent,
+    MetaEditComponent
   ],
   imports: [
     BrowserModule,

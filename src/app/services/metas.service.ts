@@ -16,6 +16,10 @@ export class MetasService {
     const url = `${this.apiUrl}/usuarios`;
     return this.http.get<IMeta>(`${url}/${id}`);
   }
+  obterMetasPeloId(id: number): Observable<IMeta> {
+    const url = `${this.apiUrl}`;
+    return this.http.get<IMeta>(`${url}/${id}`);
+  }
   adicionarMetas(meta: IMeta){
     const url = `${this.apiUrl}`;
     return this.http.post<IMeta>(`${url}`,meta);

@@ -12,6 +12,11 @@ export class TarefasService {
 
   constructor(private http: HttpClient) { }
 
+  obterTarefasMeta(id: number): Observable<ITarefa> {
+    const url = `${this.apiUrl}tarefas/metas`;
+    return this.http.get<ITarefa>(`${url}/${id}`);
+  }
+
   gerarTarefasMeta(id: number): Observable<ITarefa> {
     const url = `${this.apiUrl}gerarmeta`;
     return this.http.get<ITarefa>(`${url}/${id}`);

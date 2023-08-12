@@ -1,1 +1,29 @@
-<p>meta-detalhe works!</p>
+<div class="row align-items-center">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6 text-center">
+        <div *ngIf="metas.length > 0">
+        <h2>Metas do Usuário</h2>
+        <ul style="list-style: none;">
+            <li *ngFor="let meta of metas" class="meta my-5 py-4" >
+                <h3>{{ meta.titulo }}</h3>
+                <p>{{ meta.descricao }}</p>
+                <ul>
+                    <li *ngFor="let tarefa of tarefas">
+                        <p>{{ tarefa.descricao }}</p>
+                    </li>
+                </ul>
+                <div class="progresso mx-5 rounded-pill">0%</div>
+            </li>
+        </ul>
+        </div>
+        
+          
+    </div>
+    <div class="col-3">
+
+    </div>
+</div>
+
+
