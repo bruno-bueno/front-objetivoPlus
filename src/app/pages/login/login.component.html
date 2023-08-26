@@ -4,7 +4,7 @@
     </div>
     <div class="col-4 text-center">
       <h2 class="font-logo font-confortaa" style="font-size: 5vw;">Objetivo+</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <div>
             <label for="username" class="">Username:</label><br>
             <input type="text" id="username" formControlName="username">

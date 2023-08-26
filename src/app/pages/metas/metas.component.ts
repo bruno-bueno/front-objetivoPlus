@@ -23,7 +23,8 @@ export class MetasComponent implements OnInit {
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
 
-  
+  id =  String(localStorage.getItem('idUsuario'));
+  token = String(localStorage.getItem('token'));
   
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private router: Router){}
   
@@ -33,16 +34,15 @@ export class MetasComponent implements OnInit {
   }
   
   obterMetasUsuario(){
-    this.metasService.obterMetasUsuario(7)
+    
+    this.metasService.obterMetasUsuario(this.id,this.token)
     .subscribe(async (response: any) => {
       if (response) {
         this.metas = response;
         console.log(this.metas);
         for(let i =0; i < this.metas.length; i++){
           await this.obterTarefasMeta(response[i].id);
-          console.log(response[i].id);
-          console.log("estou no for")
-        };
+        }
       } else {
         console.error("Resposta vazia.");
       }
@@ -59,7 +59,6 @@ export class MetasComponent implements OnInit {
     .subscribe((response: any) => {
       if (response || response.concluido==0) {
         this.tarefas = response;
-        console.log("estou no obter tarefas");
         console.log(this.tarefas);
       } else {
         console.error("Resposta vazia.");

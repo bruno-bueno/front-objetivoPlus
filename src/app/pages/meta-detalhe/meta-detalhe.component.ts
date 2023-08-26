@@ -46,7 +46,6 @@ export class MetaDetalheComponent implements OnInit{
     .subscribe((response: any) => {
       if (response || response.concluido==0) {
         this.tarefas = response;
-        console.log("estou no obter tarefas");
         console.log(this.tarefas);
       } else {
         console.error("Resposta vazia.");

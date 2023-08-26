@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { IMeta } from '../interfaces/IMetas';
@@ -10,11 +10,15 @@ import { IMeta } from '../interfaces/IMetas';
 export class MetasService {
   private apiUrl = environment.apiUrl + 'metas';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  obterMetasUsuario(id: number): Observable<IMeta> {
+  obterMetasUsuario(id?: string, token?:string): Observable<IMeta> {
     const url = `${this.apiUrl}/usuarios`;
-    return this.http.get<IMeta>(`${url}/${id}`);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      
+    const options = { headers: headers };
+    return this.http.get<IMeta>(`${url}/${id}`, options);
   }
   obterMetasPeloId(id: number): Observable<IMeta> {
     const url = `${this.apiUrl}`;
