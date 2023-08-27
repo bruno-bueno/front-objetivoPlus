@@ -12,20 +12,25 @@ export class MetasService {
 
   constructor(private http: HttpClient) {}
 
-  obterMetasUsuario(id?: string, token?:string): Observable<IMeta> {
+  obterMetasUsuario(token?:string): Observable<IMeta> {
     const url = `${this.apiUrl}/usuarios`;
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
-      
-    const options = { headers: headers };
-    return this.http.get<IMeta>(`${url}/${id}`, options);
+    const header = { headers: headers };
+    return this.http.get<IMeta>(url, header);
   }
-  obterMetasPeloId(id: number): Observable<IMeta> {
+  obterMetasPeloId(id: number, token?:string): Observable<IMeta> {
     const url = `${this.apiUrl}`;
-    return this.http.get<IMeta>(`${url}/${id}`);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.get<IMeta>(`${url}/${id}`,header);
   }
-  adicionarMetas(meta: IMeta){
+  adicionarMetas(meta: IMeta, token?:string){
     const url = `${this.apiUrl}`;
-    return this.http.post<IMeta>(`${url}`,meta);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.post<IMeta>(`${url}`,meta, header);
   }
 }

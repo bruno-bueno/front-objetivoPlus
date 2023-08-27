@@ -1,5 +1,5 @@
 export interface IMeta{
-    id:number,
+    id?:number,
     usuario_id:number,
     titulo:string,
     descricao:string,

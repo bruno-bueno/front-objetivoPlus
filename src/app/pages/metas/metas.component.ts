@@ -23,7 +23,6 @@ export class MetasComponent implements OnInit {
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
 
-  id =  String(localStorage.getItem('idUsuario'));
   token = String(localStorage.getItem('token'));
   
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private router: Router){}
@@ -34,8 +33,7 @@ export class MetasComponent implements OnInit {
   }
   
   obterMetasUsuario(){
-    
-    this.metasService.obterMetasUsuario(this.id,this.token)
+    this.metasService.obterMetasUsuario(this.token)
     .subscribe(async (response: any) => {
       if (response) {
         this.metas = response;
@@ -50,12 +48,10 @@ export class MetasComponent implements OnInit {
     (error: any) => {
       console.error("Ocorreu um erro:", error);
     });
-       
   }
 
   obterTarefasMeta(id: number){
-
-    this.tarefasService.obterTarefasMeta(id)
+    this.tarefasService.obterTarefasMeta(id,this.token)
     .subscribe((response: any) => {
       if (response || response.concluido==0) {
         this.tarefas = response;
@@ -70,7 +66,7 @@ export class MetasComponent implements OnInit {
     
   }
 
-  redirecionarDetalhe(id: number){
+  redirecionarDetalhe(id?: number){
     this.router.navigate(['/meta-detalhe/'+id]);
   }
 

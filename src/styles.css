@@ -40,3 +40,9 @@ a{
 a:hover{
     color: inherit;
 }
+li{
+    list-style-type: none;
+}
+i{
+    float:left;
+}

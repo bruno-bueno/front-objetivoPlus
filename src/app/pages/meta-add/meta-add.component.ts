@@ -10,9 +10,12 @@ import { TarefasService } from 'src/app/services/tarefas.service';
 })
 export class MetaAddComponent implements OnInit{
   
+  id?: number;
+  token?: string;
+
   meta: IMeta = {
-    id: 0,
-    usuario_id: 7,
+    id:0,
+    usuario_id: 0,
     titulo: '',
     descricao: '',
     concluido: 0,
@@ -22,7 +25,10 @@ export class MetaAddComponent implements OnInit{
   constructor(private metasService: MetasService, private tarefasService: TarefasService ){}
 
   ngOnInit(): void {
-    
+    this.token = String(localStorage.getItem('token'));  
+    this.id = Number(localStorage.getItem('idUsuario'));
+    this.meta.usuario_id=this.id;
+    console.log(this.meta)
   }
 
 
@@ -47,9 +53,10 @@ export class MetaAddComponent implements OnInit{
   }
 
   criarMeta() {
-    this.metasService.adicionarMetas(this.meta)
+    this.metasService.adicionarMetas(this.meta, this.token)
       .subscribe(async (response: any) => {
       if (response) {
+        console.log("criar");
         console.log(response);
         await this.gerarMeta(response.id);
       } else {
@@ -62,7 +69,7 @@ export class MetaAddComponent implements OnInit{
   }
 
   gerarMeta(id: number){
-    this.tarefasService.gerarTarefasMeta(id)
+    this.tarefasService.gerarTarefasMeta(id,this.token)
     .subscribe((response: any) => {
       if (response) {
         console.log(response);

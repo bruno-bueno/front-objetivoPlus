@@ -28,13 +28,15 @@ export class LoginComponent {
         password: password,
         username: username
       }
-
+      console.log("usuario")
+      console.log(usuario);
       this.usuarioService.login(usuario)
       .subscribe(async (response: any) => {
       if (response) {
         console.log(response.token);
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("idUsuario", response.id);
+        await localStorage.setItem("token", response.token);
+        await localStorage.setItem("idUsuario", response.id);
+        this.router.navigate(['/metas']);
       } else {
         console.error("Resposta vazia.");
       }
@@ -48,7 +50,6 @@ export class LoginComponent {
       console.log('Username:', username);
       console.log('Password:', password);
 
-      this.router.navigate(['/metas']);
       // Redirecione para outra página após o login bem-sucedido
     }
   }

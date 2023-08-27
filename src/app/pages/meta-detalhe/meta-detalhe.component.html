@@ -11,7 +11,10 @@
                 <p>{{ meta.descricao }}</p>
                 <ul>
                     <li *ngFor="let tarefa of tarefas">
-                        <p>{{ tarefa.descricao }}</p>
+                        <a (click)="concluido(tarefa.id)">
+                            <i [class]="tarefa.icone"></i>
+                            <p>{{ tarefa.descricao }}</p>    
+                        </a>
                     </li>
                 </ul>
                 <div class="progresso mx-5 rounded-pill">0%</div>

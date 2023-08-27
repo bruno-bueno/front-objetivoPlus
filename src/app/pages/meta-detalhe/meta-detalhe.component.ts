@@ -10,20 +10,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./meta-detalhe.component.css']
 })
 export class MetaDetalheComponent implements OnInit{
-  id: number = 0;
+  id!: number;
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
+  token = String(localStorage.getItem('token'));
+  icone = "bi bi-check-square";
 
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"]
     this.obterMetasUsuario();
-    
+    this.icone;
   }
 
   obterMetasUsuario(){
-    this.metasService.obterMetasPeloId(this.id)
+    this.metasService.obterMetasPeloId(this.id,this.token)
     .subscribe(async (response: any) => {
       if (response) {
         this.metas = response;
@@ -41,10 +43,9 @@ export class MetaDetalheComponent implements OnInit{
   }
 
   obterTarefasMeta(id: number){
-
-    this.tarefasService.obterTarefasMeta(id)
+    this.tarefasService.obterTarefasMeta(id,this.token)
     .subscribe((response: any) => {
-      if (response || response.concluido==0) {
+      if (response) {
         this.tarefas = response;
         console.log(this.tarefas);
       } else {
@@ -56,5 +57,18 @@ export class MetaDetalheComponent implements OnInit{
     });
     
   }
+
+  concluido(tarefas: any){
+    console.log(tarefas);
+    const tarefa = this.tarefas.find(t => t.id == tarefas);
+    if (tarefa) {
+      if (tarefa.icone == 'bi bi-check-square') {
+        tarefa.icone = 'bi bi-check-square-fill';
+      } else {
+        tarefa.icone = 'bi bi-check-square';
+      } 
+    }
+  }
+    
 
 }

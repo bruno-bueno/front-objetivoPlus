@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { ITarefa } from '../interfaces/ITarefas';
 
@@ -12,14 +12,20 @@ export class TarefasService {
 
   constructor(private http: HttpClient) { }
 
-  obterTarefasMeta(id: number): Observable<ITarefa> {
+  obterTarefasMeta(id: number, token?: string): Observable<ITarefa> {
     const url = `${this.apiUrl}tarefas/metas`;
-    return this.http.get<ITarefa>(`${url}/${id}`);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.get<ITarefa>(`${url}/${id}`,header);
   }
 
-  gerarTarefasMeta(id: number): Observable<ITarefa> {
+  gerarTarefasMeta(id: number, token?: string): Observable<ITarefa> {
     const url = `${this.apiUrl}gerarmeta`;
-    return this.http.get<ITarefa>(`${url}/${id}`);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.get<ITarefa>(`${url}/${id}`,header);
   }
 
 }
