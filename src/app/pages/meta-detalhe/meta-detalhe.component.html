@@ -4,20 +4,24 @@
     </div>
     <div class="col-6 text-center">
         <div *ngIf="metas.length > 0">
-        <h2>Metas do Usuário</h2>
+        <h2 class="font-confortaa font-logo fs-2 mt-4">Metas do Usuário</h2>
         <ul style="list-style: none;">
             <li *ngFor="let meta of metas" class="meta my-5 py-4" >
                 <h3>{{ meta.titulo }}</h3>
                 <p>{{ meta.descricao }}</p>
                 <ul>
                     <li *ngFor="let tarefa of tarefas">
-                        <a (click)="concluido(tarefa.id)">
-                            <i [class]="tarefa.icone"></i>
-                            <p>{{ tarefa.descricao }}</p>    
+                        <a (click)="concluido(tarefa)">
+                          <i [class]="tarefa.icone"></i>
+                          <p>{{ tarefa.descricao }}</p>
                         </a>
                     </li>
                 </ul>
-                <div class="progresso mx-5 rounded-pill">0%</div>
+                <div class="progresso mx-5 rounded-pill">
+                    <div [style]="preenchimento" class="rounded-pill progressoI"> 
+                        <p><b>0%</b></p>
+                    </div>
+                </div>
             </li>
         </ul>
         </div>

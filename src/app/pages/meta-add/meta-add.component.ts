@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IMeta } from 'src/app/interfaces/IMetas';
 import { MetasService } from 'src/app/services/metas.service';
 import { TarefasService } from 'src/app/services/tarefas.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,13 +23,17 @@ export class MetaAddComponent implements OnInit{
     prazo: ''
   };
 
-  constructor(private metasService: MetasService, private tarefasService: TarefasService ){}
+  constructor(private metasService: MetasService, private tarefasService: TarefasService, private router: Router ){}
 
   ngOnInit(): void {
     this.token = String(localStorage.getItem('token'));  
     this.id = Number(localStorage.getItem('idUsuario'));
     this.meta.usuario_id=this.id;
     console.log(this.meta)
+    console.log(this.token);
+    if(this.token === 'null'){
+      this.router.navigate(['/login']);
+    }
   }
 
 
@@ -56,7 +61,6 @@ export class MetaAddComponent implements OnInit{
     this.metasService.adicionarMetas(this.meta, this.token)
       .subscribe(async (response: any) => {
       if (response) {
-        console.log("criar");
         console.log(response);
         await this.gerarMeta(response.id);
       } else {

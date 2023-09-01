@@ -15,4 +15,8 @@ export class UsuariosService {
     const url = `${this.apiUrl}/login`;
     return this.http.post(`${url}`,usuario);
   }
+  cadastro(usuario:IUsuario){
+    const url = `${this.apiUrl}/cadastro`;
+    return this.http.post(`${url}`,usuario);
+  }
 }

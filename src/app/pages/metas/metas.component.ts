@@ -22,52 +22,73 @@ const routes: Routes = [
 export class MetasComponent implements OnInit {
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
+  larguras: { [key: number]: string } = {};
 
   token = String(localStorage.getItem('token'));
   
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private router: Router){}
   
   ngOnInit(): void {
-    this.obterMetasUsuario();
+      this.obterMetasUsuario();   
 
   }
   
   obterMetasUsuario(){
     this.metasService.obterMetasUsuario(this.token)
     .subscribe(async (response: any) => {
+      console.log(response);
       if (response) {
         this.metas = response;
         console.log(this.metas);
-        for(let i =0; i < this.metas.length; i++){
-          await this.obterTarefasMeta(response[i].id);
-        }
+        this.metas.forEach((meta) => {
+          this.calcularLargura(meta.id);
+        });
       } else {
         console.error("Resposta vazia.");
       }
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
+      this.router.navigate(['/login']);
     });
-  }
-
-  obterTarefasMeta(id: number){
-    this.tarefasService.obterTarefasMeta(id,this.token)
-    .subscribe((response: any) => {
-      if (response || response.concluido==0) {
-        this.tarefas = response;
-        console.log(this.tarefas);
-      } else {
-        console.error("Resposta vazia.");
-      }
-    },
-    (error: any) => {
-      console.error("Ocorreu um erro:", error);
-    });
-    
   }
 
   redirecionarDetalhe(id?: number){
     this.router.navigate(['/meta-detalhe/'+id]);
+  }
+
+  calcularLargura(id?: number) {
+    if (!id) {
+      console.error("ID da meta é indefinido.");
+      return; 
+    }
+
+    this.tarefasService.obterTarefasMeta(id, this.token).subscribe(
+      (response: any) => {
+        if (response || response.concluido == 0) {
+          const testeTarefas: ITarefa[] = response;
+          console.log(testeTarefas);
+
+          let marcados = 0;
+          testeTarefas.forEach((tarefa: any) => {
+            if (tarefa.concluido == 1) {
+              marcados++;
+            }
+          });
+
+          console.log(testeTarefas.length)
+          const porcentagem = (marcados / testeTarefas.length) * 100;
+          this.larguras[id] = `${porcentagem}%`;
+        } else {
+          console.error("Resposta vazia.");
+          this.larguras[id] = '0%';
+        }
+      },
+      (error: any) => {
+        console.error("Ocorreu um erro:", error);
+        this.larguras[id] = '0%';
+      }
+    );
   }
 
 }

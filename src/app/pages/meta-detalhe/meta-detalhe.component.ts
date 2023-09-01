@@ -4,6 +4,7 @@ import { MetasService } from 'src/app/services/metas.service';
 import { IMeta } from 'src/app/interfaces/IMetas';
 import { ITarefa } from 'src/app/interfaces/ITarefas';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './meta-detalhe.component.html',
@@ -14,14 +15,19 @@ export class MetaDetalheComponent implements OnInit{
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
   token = String(localStorage.getItem('token'));
-  icone = "bi bi-check-square";
+  icone!: string;
+  iconePadrao = "bi bi-check-square";
+  iconeMarcado = "bi bi-check-square-fill";
+  marcados=0;
+  porcentagem!: number;
+  preenchimento = `background-color: #363636; width: ${this.porcentagem}%; `;
 
-  constructor(private metasService: MetasService, private tarefasService: TarefasService, private route: ActivatedRoute){}
+  constructor(private metasService: MetasService, private tarefasService: TarefasService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"]
     this.obterMetasUsuario();
-    this.icone;
+    
   }
 
   obterMetasUsuario(){
@@ -38,6 +44,7 @@ export class MetaDetalheComponent implements OnInit{
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
+      this.router.navigate(['/login']);
     });
        
   }
@@ -47,7 +54,19 @@ export class MetaDetalheComponent implements OnInit{
     .subscribe((response: any) => {
       if (response) {
         this.tarefas = response;
+        console.log("array")
         console.log(this.tarefas);
+        this.tarefas.forEach(tarefa => {
+          if(tarefa.concluido==0){
+            tarefa.icone = this.iconePadrao;
+          }else{
+            tarefa.icone = this.iconeMarcado;
+            this.marcados++;
+          }       
+        });
+        this.porcentagem = (100/this.tarefas.length)*this.marcados;
+        this.preenchimento += ` width: ${this.porcentagem}%;`;
+        console.log(this.porcentagem);
       } else {
         console.error("Resposta vazia.");
       }
@@ -59,15 +78,35 @@ export class MetaDetalheComponent implements OnInit{
   }
 
   concluido(tarefas: any){
-    console.log(tarefas);
-    const tarefa = this.tarefas.find(t => t.id == tarefas);
+    const concluir={
+      concluido: 0
+    }
+    console.log(tarefas.id);
+    const tarefa = this.tarefas.find(t => t.id == tarefas.id);
     if (tarefa) {
       if (tarefa.icone == 'bi bi-check-square') {
+        concluir.concluido=1;
+        this.marcados++;
         tarefa.icone = 'bi bi-check-square-fill';
       } else {
+        this.marcados--;
         tarefa.icone = 'bi bi-check-square';
       } 
     }
+    this.porcentagem = (100/this.tarefas.length)*this.marcados;
+    this.preenchimento += ` width: ${this.porcentagem}%;`;
+    console.log(this.porcentagem);
+    this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token)
+          .subscribe((response: ITarefa) => {
+            if (response) {
+              console.log(response);     
+            } else {
+              console.error("Resposta vazia.");
+            }
+          },
+          (error: any) => {
+            console.error("Ocorreu um erro:", error);
+          });
   }
     
 
