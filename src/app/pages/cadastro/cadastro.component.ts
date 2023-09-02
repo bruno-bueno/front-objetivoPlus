@@ -25,6 +25,7 @@ export class CadastroComponent {
       } else {  
         console.error("Resposta vazia.");
       }
+      
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);

@@ -9,7 +9,7 @@ import { MetaEditComponent } from './pages/meta-edit/meta-edit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path:'cadastro', component: CadastroComponent},
+  { path: 'cadastro', component: CadastroComponent},
   { path: 'metas', component: MetasComponent},
   { path: 'meta-detalhe/:id', component: MetaDetalheComponent},
   { path: 'meta-add', component: MetaAddComponent},
