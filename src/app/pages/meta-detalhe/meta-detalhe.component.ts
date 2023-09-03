@@ -93,7 +93,7 @@ export class MetaDetalheComponent implements OnInit{
         tarefa.icone = 'bi bi-check-square';
       } 
     }
-    this.porcentagem = (100/this.tarefas.length)*this.marcados;
+    this.porcentagem = ((100/this.tarefas.length)*this.marcados);
     this.preenchimento += ` width: ${this.porcentagem}%;`;
     console.log(this.porcentagem);
     this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token)

@@ -78,7 +78,7 @@ export class MetasComponent implements OnInit {
 
           console.log(testeTarefas.length)
           const porcentagem = (marcados / testeTarefas.length) * 100;
-          this.larguras[id] = `${porcentagem}%`;
+          this.larguras[id] = `${porcentagem.toFixed(0)}%`;
         } else {
           console.error("Resposta vazia.");
           this.larguras[id] = '0%';

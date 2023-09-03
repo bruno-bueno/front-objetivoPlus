@@ -1,25 +1,27 @@
 <div class="row align-items-center">
-    <div class="col-3">
-
+    <div class="col-md-3">
+        <div class="linhaUm"></div>
+        <div class="linhaDois"></div>
     </div>
-    <div class="col-6 text-center">
+    <div class="col-md-6 col-sm-12">
         <div *ngIf="metas.length > 0">
-        <h2 class="font-confortaa font-logo fs-2 mt-4">Metas do Usuário</h2>
+        <h2 class="font-confortaa font-logo fs-2 mt-4 text-center">Metas do Usuário</h2>
         <ul style="list-style: none;">
-            <li *ngFor="let meta of metas" class="meta my-5 py-4" >
-                <h3>{{ meta.titulo }}</h3>
-                <p>{{ meta.descricao }}</p>
+            <li *ngFor="let meta of metas" class="meta my-5 p-4" >
+                <h3 class="text-center">{{ meta.titulo }}</h3>
+                <p class="text-center">{{ meta.descricao }}</p>
                 <ul>
                     <li *ngFor="let tarefa of tarefas">
                         <a (click)="concluido(tarefa)">
-                          <i [class]="tarefa.icone"></i>
+                          <i [class]="tarefa.icone" class="p-2"></i>
+                          <h3 class="fs-5 pt-2">{{ tarefa.titulo}}</h3>
                           <p>{{ tarefa.descricao }}</p>
                         </a>
                     </li>
                 </ul>
-                <div class="progresso mx-5 rounded-pill">
-                    <div [style]="preenchimento" class="rounded-pill progressoI"> 
-                        <p><b>0%</b></p>
+                <div class="progresso  rounded-pill">
+                    <div [style]="preenchimento" style="height: 1.5rem;" class="rounded-pill progressoI"> 
+                        <p [style]="porcentagem >= 50 ? 'color: #d9d9d9':''"><b>{{ porcentagem.toFixed(0) }}%</b></p>
                     </div>
                 </div>
             </li>
@@ -28,7 +30,7 @@
         
           
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
 
     </div>
 </div>

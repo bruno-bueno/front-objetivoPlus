@@ -1,18 +1,20 @@
 <div class="row align-items-center text-center">
-    <div class="col-3">
+    <div class="col-md-3">
 
     </div>
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12">
         <div *ngIf="metas.length > 0">
             <h2 class="font-confortaa font-logo fs-2 mt-4">Meus Objetivos</h2>
             <ul style="list-style: none;">
-              <li *ngFor="let meta of metas" class="meta my-5 py-3" (click)="redirecionarDetalhe(meta.id)">
+              <li *ngFor="let meta of metas" class="meta my-5 p-3" (click)="redirecionarDetalhe(meta.id)">
                 <h3 class="fs-4">{{ meta.titulo }}</h3>
                 <p class="fs-7">{{ meta.descricao }}</p>
-                <div class="progresso mx-4 rounded-pill">
-                  <div [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0], 'background-color': '#363636'}" class="rounded-pill"> 
-                    <p><b>0%</b></p>
+                <div class="progresso rounded-pill">
+                  <p><b>{{larguras[meta.id!]}}</b></p>
+                  <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#363636', 'height':'1.5rem'}" class="rounded-pill"> 
+                    
                   </div>
+                  
                 </div>
               </li>
             </ul>
@@ -21,7 +23,7 @@
         <button class="btn btn-secondary" routerLink="/meta-add">Adicionar Meta</button>
           
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
         <div class="linhaUm"></div>
         <div class="linhaDois"></div>
     </div>

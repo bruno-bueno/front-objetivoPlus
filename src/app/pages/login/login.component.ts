@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  usuario:IUsuario ={
+    username: '',
+    password: '',
+    email:''
+  }
   
   loginForm: FormGroup;
 
@@ -24,16 +29,7 @@ export class LoginComponent implements OnInit{
   }
 
   login() {
-    if (this.loginForm.valid) {
-      const username = this.loginForm.get('username')?.value;
-      const password = this.loginForm.get('password')?.value;
-      const usuario: IUsuario={
-        password: password,
-        username: username
-      }
-      console.log("usuario")
-      console.log(usuario);
-      this.usuarioService.login(usuario)
+      this.usuarioService.login(this.usuario)
       .subscribe(async (response: any) => {
       if (response) {
         console.log(response.token);
@@ -46,14 +42,8 @@ export class LoginComponent implements OnInit{
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
+      alert('Senha ou Usuario incorreto');
     })
     
-
-      // Aqui você pode realizar a lógica de autenticação ou enviar os dados para um serviço
-      console.log('Username:', username);
-      console.log('Password:', password);
-
-      // Redirecione para outra página após o login bem-sucedido
-    }
   }
 }

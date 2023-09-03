@@ -1,32 +1,29 @@
   <div class="row">
-    <div class="col-4">
-      
+    <div class="col-md-4">
+        
     </div>
-    <div class="col-4 text-center">
-      <h2 class="font-logo font-confortaa" style="font-size: 5vw;">Objetivo+</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <div>
-            <label for="username" class="">Username:</label><br>
-            <input type="text" id="username" formControlName="username">
-            <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
-                <div *ngIf="loginForm.get('username')?.hasError('required')">Username é obrigatório.</div>
-            </div>
-          </div>
+    <div class="col-md-4 col-sm-12">
+      <h2 class="font-logo font-confortaa mt-5 text-center" style="font-size: 3.5rem;">Objetivo+</h2>
+      <form (ngSubmit)="login()" >
+        <div class="form-group mt-2">
+          <label for="username">Nome de Usuario</label>
+          <input type="text" id="username" name="username" [(ngModel)]="usuario.username" class="form-control" required>
+        </div>
+        <div class="form-group mt-2">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" [(ngModel)]="usuario.password" class="form-control" required>
+        </div>
+        <div style="text-align: center;" class="mt-4">
+          <button type="submit"  class="btn btn-primary">Entrar</button>  
+        </div>
+        
+      </form>
 
-          <div>
-            <label for="password">Password:</label><br> 
-            <input type="password" id="password" formControlName="password">
-            <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-              <div *ngIf="loginForm.get('password')?.hasError('required')">Password é obrigatória.</div>
-            </div>
-          </div>
-
-          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button><br>
-          <button class="mt-4"routerLink="/cadastro">cadastro</button>
-        </form>
+      <a routerLink="/cadastro"><p class="mt-2 text-center" style="color:#fff;">não possui conta? cadastre-se aqui</p></a>
     </div>
-    <div class="col-4">
-      
+    <div class="col-md-4">
+      <div class="linhaUm"></div>
+      <div class="linhaDois"></div>
     </div>
   </div>
 

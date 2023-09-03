@@ -1,26 +1,26 @@
     <div class="row align-items-center">
-        <div class="col">
-
+        <div class="col-md">
+            <div class="linhaUm"></div>
+            <div class="linhaDois"></div>
         </div>
-        <div class="col-8 text-center">
-        <h2 class="titulo">Adicionar Objetivo</h2>
+        <div class="col-md-8 col-sm-12">
+        <h2 class="font-logo font-confortaa text-center">Adicionar Objetivo</h2>
         <form (ngSubmit)="criarMeta()">
-            <input type="text" id="titulo" class="w-100 mt-4 rounded" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
+            <input type="text" id="titulo" class="w-100 mt-4  form-control" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
             
-            <textarea id="descricao" [(ngModel)]="meta.descricao" class="px-2 mt-4 w-100 rounded" placeholder="Descrição:" name="descricao" required></textarea>
+            <textarea id="descricao" [(ngModel)]="meta.descricao" class="px-2 mt-4 w-100  form-control" placeholder="Descreva seu objetivo de forma clara:" name="descricao" required></textarea>
             
-            <div style="float: left;">
-                <input  class="numero" type="text" id="prazo"  class="mt-4 rounded" placeholder="Prazo:" [(ngModel)]="meta.prazo" name="prazo" required >
-                <input type="button" value="Meses" class="rounded m-1 px-1" (click)="adicionarPrazo('mes')">
-                <input type="button" value="Anos" class="rounded px-1" (click)="adicionarPrazo('ano')"><br>
-                <button type="submit" class="rounded px-1">Criar Meta</button>
+            <div class="text-center mt-4">
+                <input style="width: 25%; display: initial;" class="numero" type="text" id="prazo"  class=" form-control" placeholder="Prazo:" [(ngModel)]="meta.prazo" name="prazo" required >
+                <input type="button" value="Meses" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('mes')">
+                <input type="button" value="Anos" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('ano')"><br>
+                <button type="submit" class="mt-4 btn btn-secondary">Criar Meta</button>
             </div>
             
             
         </form>
         </div>
-        <div class="col">
-            <!-- <div class="linha1"></div>
-            <div class="linha2"></div> -->
+        <div class="col-md">
+
         </div>
     </div>

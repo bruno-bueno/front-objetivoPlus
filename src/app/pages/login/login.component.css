@@ -1,0 +1,30 @@
+.row{
+    overflow: hidden;
+}
+.linhaUm{
+    width: 60vw;
+    height:6vw;
+    transform: rotate(-45deg);
+    background-color: #a7000e;
+    margin-top: 74.6vh;
+    margin-left: -16vw;
+}
+
+.linhaDois{
+    width: 40vw;
+    height:6vw;
+    transform: rotate(-45deg);
+    background-color: #D90416;
+    margin-top: 1vw;
+    margin-left: 1vw;
+}
+
+
+@media screen and (max-width: 768px) {
+    .linhaUm{
+        display: none;
+    }
+    .linhaDois{
+        display: none;
+    }
+}
