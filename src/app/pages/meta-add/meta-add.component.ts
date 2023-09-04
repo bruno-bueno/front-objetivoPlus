@@ -66,7 +66,7 @@ export class MetaAddComponent implements OnInit{
       } else {
         console.error("Resposta vazia.");
       }
-      this.router.navigate(['/metas']);
+      this.router.navigate(['/meta-detalhe/'+response.id]);
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);

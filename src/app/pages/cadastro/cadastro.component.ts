@@ -9,7 +9,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class CadastroComponent {
 
-  usuario:IUsuario ={
+  usuario: IUsuario ={
     username: '',
     password: '',
     email:''
@@ -23,7 +23,9 @@ export class CadastroComponent {
       .subscribe(async(response: any) => {
         console.log(response);
       if (response) {
-        this.router.navigate(['/login']);
+        console.log("caiu aqui")
+        this.login();
+        alert('usuario cadastrado');
       } else {  
         console.error("Resposta vazia.");
       }
@@ -34,5 +36,24 @@ export class CadastroComponent {
       alert('nome de usuario, ou email invalido');
     })
 
+  }
+
+  login() {
+    this.usuariosService.login(this.usuario)
+      .subscribe(async (response: any) => {
+      if (response) {
+        console.log(response.token);
+        await localStorage.setItem("token", response.token);
+        await localStorage.setItem("idUsuario", response.id);
+        this.router.navigate(['/metas']);
+      } else {
+        console.error("Resposta vazia.");
+      }
+    },
+    (error: any) => {
+      console.error("Ocorreu um erro:", error);
+      alert('Senha ou Usuario incorreto');
+    })
+  
   }
 }

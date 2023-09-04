@@ -97,16 +97,32 @@ export class MetaDetalheComponent implements OnInit{
     this.preenchimento += ` width: ${this.porcentagem}%;`;
     console.log(this.porcentagem);
     this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token)
-          .subscribe((response: ITarefa) => {
-            if (response) {
-              console.log(response);     
-            } else {
-              console.error("Resposta vazia.");
-            }
-          },
-          (error: any) => {
-            console.error("Ocorreu um erro:", error);
-          });
+    .subscribe((response: ITarefa) => {
+      if (response) {
+        console.log(response);     
+      } else {
+        console.error("Resposta vazia.");
+      }
+    },
+    (error: any) => {
+      console.error("Ocorreu um erro:", error);
+    });
+  }
+
+  deleteMeta(){
+    this.metasService.deletarMetas(this.id,this.token)
+    .subscribe((response: any) => {
+      if (response) {
+        console.log(response);
+        alert('Meta Deletada')
+        this.router.navigate(['/metas']);
+      } else {
+        console.error("Resposta vazia.");
+      }
+    },
+    (error: any) => {
+      console.error("Ocorreu um erro:", error);
+    });
   }
     
 

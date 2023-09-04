@@ -1,20 +1,20 @@
+<a routerLink="/login"><i class="bi bi-box-arrow-left fs-3" style="color: #fff;"></i></a>
+
 <div class="row align-items-center text-center">
     <div class="col-md-3">
 
     </div>
     <div class="col-md-6 col-sm-12">
         <div *ngIf="metas.length > 0">
-            <h2 class="font-confortaa font-logo fs-2 mt-4">Meus Objetivos</h2>
+            <h2 class="font-confortaa font-logo fs-2 mt-5">Meus Objetivos</h2>
             <ul style="list-style: none;">
               <li *ngFor="let meta of metas" class="meta my-5 p-3" (click)="redirecionarDetalhe(meta.id)">
                 <h3 class="fs-4">{{ meta.titulo }}</h3>
                 <p class="fs-7">{{ meta.descricao }}</p>
                 <div class="progresso rounded-pill">
                   <p><b>{{larguras[meta.id!]}}</b></p>
-                  <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#363636', 'height':'1.5rem'}" class="rounded-pill"> 
-                    
+                  <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#363636', 'height':'1.5rem'}" class="rounded-pill">   
                   </div>
-                  
                 </div>
               </li>
             </ul>

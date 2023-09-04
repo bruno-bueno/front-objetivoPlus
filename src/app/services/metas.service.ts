@@ -33,4 +33,11 @@ export class MetasService {
     const header = { headers: headers };
     return this.http.post<IMeta>(`${url}`,meta, header);
   }
+  deletarMetas(id: number, token?:string){
+    const url = `${this.apiUrl}`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.delete(`${url}/${id}`, header);
+  }
 }
