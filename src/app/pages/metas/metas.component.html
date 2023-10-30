@@ -1,12 +1,21 @@
-<a routerLink="/login"><i class="bi bi-box-arrow-left fs-3" style="color: #fff;"></i></a>
+<div class="dropdown" style="position: fixed;">
+  <button class="p-1 px-2 btn btn-outline-dark dropdown-toggle" style="margin: 1vw;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-list fs-3" style="color: #fff;"></i>
+  </button>
+  <div class="dropdown-menu p-2">
+    <a routerLink="/meta-finalizada"><i class="bi bi-list-check fs-5" style="color: #000; "> Metas Finalizadas</i></a>
+    <hr class="dropdown-divider">
+    <a routerLink="/login"><i class="bi bi-box-arrow-left fs-5" style="color: #000;"> Deslogar</i></a>
+  </div>    
+</div>
+<div class="row align-items-center ">
 
-<div class="row align-items-center text-center">
     <div class="col-md-3">
-
+      
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-6 col-sm-12 text-center">
+      <h1 class="font-confortaa font-logo fs-1 mt-5">Meus Objetivos</h1>
         <div *ngIf="metas.length > 0">
-            <h2 class="font-confortaa font-logo fs-2 mt-5">Meus Objetivos</h2>
             <ul style="list-style: none;">
               <li *ngFor="let meta of metas" class="meta my-5 p-3" (click)="redirecionarDetalhe(meta.id)">
                 <h3 class="fs-4">{{ meta.titulo }}</h3>

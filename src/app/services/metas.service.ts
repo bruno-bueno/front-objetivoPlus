@@ -19,6 +19,13 @@ export class MetasService {
     const header = { headers: headers };
     return this.http.get<IMeta>(url, header);
   }
+  obterMetasConcluidaUsuario(token?:string): Observable<IMeta> {
+    const url = `${this.apiUrl}/usuarios/concluido`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.get<IMeta>(url, header);
+  }
   obterMetasPeloId(id: number, token?:string): Observable<IMeta> {
     const url = `${this.apiUrl}`;
     const headers = new HttpHeaders()
@@ -32,6 +39,14 @@ export class MetasService {
       .set('Authorization', `Bearer ${token}`)
     const header = { headers: headers };
     return this.http.post<IMeta>(`${url}`,meta, header);
+  }
+  concluirMetas(meta: IMeta, token?:string){
+    meta.concluido = 1;
+    const url = `${this.apiUrl}/concluir`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.put<IMeta>(`${url}/${meta.id}`,meta, header);
   }
   deletarMetas(id: number, token?:string){
     const url = `${this.apiUrl}`;

@@ -74,8 +74,8 @@ export class MetaAddComponent implements OnInit{
     })
   }
 
-  gerarMeta(id: number){
-    this.tarefasService.gerarTarefasMeta(id,this.token)
+  async gerarMeta(id: number){
+    await this.tarefasService.gerarTarefasMeta(id,this.token)
     .subscribe((response: any) => {
       if (response) {
         console.log(response);

@@ -1,4 +1,27 @@
-<a routerLink="/metas"><i class="bi bi-arrow-90deg-left fs-3" style="color:#fff;"></i></a>
+<a routerLink="/metas"><i class="bi bi-arrow-90deg-left fs-3" style="color:#fff; margin: 1vw;"></i></a>
+<div class="dropdown">
+    <button class="p-1 px-2 btn btn-outline-dark dropdown-toggle" style="float: right; margin: 1vw;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-trophy-fill fs-3" style="color:#fff;"></i>
+    </button>
+    <div class="dropdown-menu p-2">
+        <div *ngIf="trofeus.length > 0; else semTrofeu">
+            <ul>
+                <li *ngFor="let trofeu of trofeus">
+                    <i class="bi bi-trophy-fill fs-6 me-1" style="color:#000000;"></i>
+                <h5 >{{ trofeu.nome }}</h5>
+                <p >{{ trofeu.requisitos }}</p>
+                <hr class="dropdown-divider">
+                </li>
+            </ul>    
+        </div>
+        <ng-template #semTrofeu>
+            <p>Você ainda não tem nenhum trofeu</p>
+          </ng-template>
+        
+    </div>    
+</div>
+
+  
 <div class="row align-items-center">
     <div class="col-md-3">
         <div class="linhaUm"></div>

@@ -15,11 +15,11 @@ const routes: Routes = [
 ];
 
 @Component({
-  selector: 'app-metas',
-  templateUrl: './metas.component.html',
-  styleUrls: ['./metas.component.css']
+  selector: 'app-meta-finalizada',
+  templateUrl: './meta-finalizada.component.html',
+  styleUrls: ['./meta-finalizada.component.css']
 })
-export class MetasComponent implements OnInit {
+export class MetaFinalizadaComponent {
   metas: IMeta[] = [];
   tarefas: ITarefa[] = [];
   larguras: { [key: number]: string } = {};
@@ -34,7 +34,7 @@ export class MetasComponent implements OnInit {
   }
   
   obterMetasUsuario(){
-    this.metasService.obterMetasUsuario(this.token)
+    this.metasService.obterMetasConcluidaUsuario(this.token)
     .subscribe(async (response: any) => {
       console.log(response);
       if (response) {
@@ -75,28 +75,10 @@ export class MetasComponent implements OnInit {
               marcados++;
             }
           });
+
           console.log(testeTarefas.length)
           const porcentagem = (marcados / testeTarefas.length) * 100;
           this.larguras[id] = `${porcentagem.toFixed(0)}%`;
-          if (porcentagem === 100) {
-            const metaConcluida = this.metas.find(meta => meta.id === id);
-          
-            if (metaConcluida) {
-              metaConcluida.concluido = 1;
-          
-              this.metasService.concluirMetas(metaConcluida, this.token).subscribe(
-                (response) => {
-                  console.log(`Meta "${metaConcluida.titulo}" concluída com sucesso`, response);
-                },
-                (error) => {
-                  console.error(`Ocorreu um erro ao concluir a meta "${metaConcluida.titulo}"`, error);
-                }
-              );
-            } else {
-              console.error('Não foi possível encontrar a meta correspondente.');
-            }
-          }
-          
       }
       (error: any) => {
         console.error("Ocorreu um erro:", error);
@@ -104,7 +86,4 @@ export class MetasComponent implements OnInit {
       }
   });
   }
-
-  
-
 }

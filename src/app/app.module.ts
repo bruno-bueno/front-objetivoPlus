@@ -13,6 +13,7 @@ import { MetaDetalheComponent } from './pages/meta-detalhe/meta-detalhe.componen
 import { MetaAddComponent } from './pages/meta-add/meta-add.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MetaEditComponent } from './pages/meta-edit/meta-edit.component';
+import { MetaFinalizadaComponent } from './pages/meta-finalizada/meta-finalizada.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MetaEditComponent } from './pages/meta-edit/meta-edit.component';
     MetasComponent,
     MetaDetalheComponent,
     MetaAddComponent,
-    MetaEditComponent
+    MetaEditComponent,
+    MetaFinalizadaComponent,    
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUsuario } from 'src/app/interfaces/IUsuarios';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-
+import Swal from 'sweetalert2'
 @Component({
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
@@ -25,7 +25,10 @@ export class CadastroComponent {
       if (response) {
         console.log("caiu aqui")
         this.login();
-        alert('usuario cadastrado');
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario Cadastrado!',
+        })
       } else {  
         console.error("Resposta vazia.");
       }
@@ -33,7 +36,11 @@ export class CadastroComponent {
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
-      alert('nome de usuario, ou email invalido');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Nome de Usuario, ou Email Invalido!',
+      })
     })
 
   }
@@ -52,7 +59,11 @@ export class CadastroComponent {
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
-      alert('Senha ou Usuario incorreto');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Usuario ou Senha incorreta!',
+      })
     })
   
   }

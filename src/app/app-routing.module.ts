@@ -6,6 +6,7 @@ import { MetasComponent } from './pages/metas/metas.component';
 import { MetaDetalheComponent } from './pages/meta-detalhe/meta-detalhe.component';
 import { MetaAddComponent } from './pages/meta-add/meta-add.component';
 import { MetaEditComponent } from './pages/meta-edit/meta-edit.component';
+import { MetaFinalizadaComponent } from './pages/meta-finalizada/meta-finalizada.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'metas', component: MetasComponent},
   { path: 'meta-detalhe/:id', component: MetaDetalheComponent},
   { path: 'meta-add', component: MetaAddComponent},
-  { path: 'meta-edit', component: MetaEditComponent}
+  { path: 'meta-edit', component: MetaEditComponent},
+  { path: 'meta-finalizada', component: MetaFinalizadaComponent},
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { IUsuario } from 'src/app/interfaces/IUsuarios';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,11 @@ export class LoginComponent implements OnInit{
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
-      alert('Senha ou Usuario incorreto');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Usuario ou Senha incorreta!',
+      })
     })
     
   }
