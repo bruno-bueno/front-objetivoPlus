@@ -28,12 +28,13 @@ export class TarefasService {
     return this.http.get<ITarefa>(`${url}/${id}`,header);
   }
 
-  editarConcluidoTarefa(id: number,concluido: any, token?: string, quantidade?: number, idMeta?:number){
+  editarConcluidoTarefa(id: number,concluido: any, token?: string, quantidade?: number, idMeta?:number, argumento?:string){
     const url = `${this.apiUrl}tarefas/concluido`;
     const body = {
       concluido: concluido.concluido,
       quantidade: quantidade,
-      idMeta: idMeta
+      idMeta: idMeta,
+      argumento: argumento
     };
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)

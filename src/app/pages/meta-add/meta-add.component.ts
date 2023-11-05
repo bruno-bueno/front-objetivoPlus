@@ -3,7 +3,7 @@ import { IMeta } from 'src/app/interfaces/IMetas';
 import { MetasService } from 'src/app/services/metas.service';
 import { TarefasService } from 'src/app/services/tarefas.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2'
 
 @Component({
   templateUrl: './meta-add.component.html',
@@ -62,11 +62,28 @@ export class MetaAddComponent implements OnInit{
       .subscribe(async (response: any) => {
       if (response) {
         console.log(response);
+        Swal.fire({
+          title: 'Carregando',
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://media.tenor.com/xzjlrhYq_lQAAAAj/cat-nyan-cat.gif")
+            left top
+            no-repeat
+          `,
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading()
+          }
+        })
         await this.gerarMeta(response.id);
       } else {
         console.error("Resposta vazia.");
       }
-      this.router.navigate(['/meta-detalhe/'+response.id]);
     },
     (error: any) => {
       console.error("Ocorreu um erro:", error);
@@ -79,6 +96,9 @@ export class MetaAddComponent implements OnInit{
     .subscribe((response: any) => {
       if (response) {
         console.log(response);
+        Swal.close();
+        this.router.navigate(['/meta-detalhe/'+id]);
+        
       } else {
         console.error("Resposta vazia.");
       }

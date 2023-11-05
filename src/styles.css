@@ -70,3 +70,9 @@ label{
     --bs-btn-hover-bg: #b9b8b8;
     --bs-btn-hover-border-color: #b9b8b8;
 }
+.container-fluid{
+    --bs-gutter-x: 0rem;
+}
+.row{
+    --bs-gutter-x: 0rem;
+}

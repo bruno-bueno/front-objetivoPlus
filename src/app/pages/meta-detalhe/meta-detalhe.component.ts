@@ -36,8 +36,8 @@ export class MetaDetalheComponent implements OnInit{
   marcados=0;
   porcentagem!: number;
   preenchimento = `background-color: #363636; width: ${this.porcentagem}%; `;
-  
-
+  resposta?: string;
+  tarefa: any;
 
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private trofeuService: TrofeuService, private route: ActivatedRoute, private router: Router){}
 
@@ -109,27 +109,51 @@ export class MetaDetalheComponent implements OnInit{
   }
 
   async concluido(tarefas: any){
+    this.tarefa = this.tarefas.find(t => t.id == tarefas.id);
     const concluir={
       concluido: 0
     }
-    const tarefa = this.tarefas.find(t => t.id == tarefas.id);
-    if (tarefa) {
-      if (tarefa.icone == 'bi bi-check-square') {
-        concluir.concluido=1;
-        this.marcados++;
-        tarefa.icone = 'bi bi-check-square-fill';
+    if (this.tarefa) {
+      if (this.tarefa.icone == 'bi bi-check-square') {
+        await Swal.fire({
+          title: 'Conte um pouco sobre como foi realizar essa tarefa:',
+          input: 'text',
+          inputAttributes: {
+            autocapitalize: 'off',
+          },
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.resposta = result.value;
+            concluir.concluido=1;
+            this.marcados++;
+            this.tarefa.icone = 'bi bi-check-square-fill';
+          }
+        });
+        
       } else {
         this.marcados--;
-        tarefa.icone = 'bi bi-check-square';
+        this.tarefa.icone = 'bi bi-check-square';
       } 
     }
-    this.porcentagem = ((100/this.tarefas.length)*this.marcados);
-    this.preenchimento += ` width: ${this.porcentagem}%;`;
+    let porcento=((100/this.tarefas.length)*this.marcados);
+     
     console.log(this.porcentagem);
     console.log(concluir)
-    this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token,this.porcentagem,this.id)
+    this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token,porcento,this.id, this.resposta)
     .subscribe(async (response: any) => {
-      if (response) {
+      if (response == false) {
+        Toast.fire({
+          icon: 'error',
+          title: "Acho que não",
+          text: "Seu relato não bate com a meta"
+        })
+        this.tarefa.icone = 'bi bi-check-square';
+      } else {
+        this.preenchimento += ` width: ${this.porcentagem}%;`;
+        this.porcentagem = porcento
         Toast.fire({
           icon: 'success',
           title: response.resultado[0].nome,
@@ -137,8 +161,6 @@ export class MetaDetalheComponent implements OnInit{
         })
         console.log(response.resultado[0]);
         this.trofeus.push(response.resultado[0])
-      } else {
-        console.error("Resposta vazia.");
       }
     },
     (error: any) => {
