@@ -1,22 +1,34 @@
 .row{
     overflow: hidden;
 }
-.linhaUm{
-    width: 60vw;
-    height:6vw;
-    transform: rotate(-45deg);
-    background-color: #a7000e;
-    margin-top: 74.6vh;
-    margin-left: -16vw;
-}
 
 .linhaDois{
-    width: 40vw;
-    height:6vw;
-    transform: rotate(-45deg);
-    background-color: #D90416;
-    margin-top: 1vw;
-    margin-left: 1vw;
+    background: linear-gradient(180deg, #D90416 0%, #9B2630 98.44%);
+    width: 4.45vw;
+    flex-shrink: 0;
+    height: 100%;
+    position: fixed;
+    right: 80vw;
+    z-index: -2;
+    top: 0;
+}
+.linhaUm{
+    background: linear-gradient(180deg, #9B2630 0%, #D90416 98.44%);
+    width: 4.45vw;
+    height: 100%;
+    flex-shrink: 0;
+    position: fixed;
+    right: 86vw;
+    z-index: -2;
+    top: 0;
+}
+
+.form-control{
+    background-color: #363636;
+    color: #fff;
+}
+.form-control::placeholder{
+    color: #d9d9d9;
 }
 
 
@@ -26,5 +38,8 @@
     }
     .linhaDois{
         display: none;
+    }
+    h2{
+        font-size: 2.5rem!important;
     }
 }

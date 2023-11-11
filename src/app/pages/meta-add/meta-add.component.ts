@@ -20,7 +20,7 @@ export class MetaAddComponent implements OnInit{
     titulo: '',
     descricao: '',
     concluido: 0,
-    prazo: ''
+    Prazo: ''
   };
 
   constructor(private metasService: MetasService, private tarefasService: TarefasService, private router: Router ){}
@@ -38,20 +38,20 @@ export class MetaAddComponent implements OnInit{
 
 
   adicionarPrazo(unidade: string) {
-    const partes = this.meta.prazo.split(' ');
+    const partes = this.meta.Prazo.split(' ');
 
     if(partes[1] == 'mes' || partes[1] == 'ano' || partes[1] == 'meses' || partes[1] == 'anos'){
       if (unidade === 'mes') {
-        this.meta.prazo=this.meta.prazo.replace('anos','meses'); 
+        this.meta.Prazo=this.meta.Prazo.replace('anos','meses'); 
       } else if (unidade === 'ano') {
-        this.meta.prazo=this.meta.prazo.replace('meses','anos'); 
+        this.meta.Prazo=this.meta.Prazo.replace('meses','anos'); 
       }
        
     }else{
       if (unidade === 'mes') {
-        this.meta.prazo += ' meses';
+        this.meta.Prazo += ' meses';
       } else if (unidade === 'ano') {
-        this.meta.prazo += ' anos'; 
+        this.meta.Prazo += ' anos'; 
       }
     }
     
@@ -64,18 +64,6 @@ export class MetaAddComponent implements OnInit{
         console.log(response);
         Swal.fire({
           title: 'Carregando',
-          width: 600,
-          padding: '3em',
-          color: '#716add',
-          background: '#fff',
-          backdrop: `
-            rgba(0,0,123,0.4)
-            url("https://media.tenor.com/xzjlrhYq_lQAAAAj/cat-nyan-cat.gif")
-            left top
-            no-repeat
-          `,
-          allowEscapeKey: false,
-          allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading()
           }

@@ -1,78 +1,78 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary p-3" style="background-color: #363636; box-shadow: 0px 4px 8px #292929;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-3" style="background-color: #363636; box-shadow: 0px 4px 8px #292929;">
     <div class="container-fluid">
-      <a class="navbar-brand font-confortaa font-logo fs-4" routerLink="/metas" href="#">Objetivo+</a>
+      <a class="navbar-brand font-confortaa font-logo fs-3" routerLink="/metas" href="#">Objetivo+</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a routerLink="/meta-finalizada" class="nav-link active" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
+            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <button routerLink="/login" class="btn btn-outline-danger" type="submit"><i class="bi bi-box-arrow-left fs-5" style="color: #000;"> Deslogar</i></button>
+          <button routerLink="/login" class="btn btn-light" type="submit"><i class="bi bi-box-arrow-left fs-5" > Sair</i></button>
         </form>
       </div>
     </div>
   </nav>
-<div class="dropdown">
-    <button class="p-1 px-2 btn btn-outline-dark dropdown-toggle" style="float: right; margin: 1vw;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-trophy-fill fs-3" style="color:#fff;"></i>
-    </button>
-    <div class="dropdown-menu p-2">
-        <div *ngIf="trofeus.length > 0; else semTrofeu">
-            <ul>
-                <li *ngFor="let trofeu of trofeus">
-                    <i class="bi bi-trophy-fill fs-6 me-1" style="color:#000000;"></i>
-                <h5 >{{ trofeu.nome }}</h5>
-                <p >{{ trofeu.requisitos }}</p>
-                <hr class="dropdown-divider">
-                </li>
-            </ul>    
-        </div>
-        <ng-template #semTrofeu>
-            <p>Você ainda não tem nenhum trofeu</p>
-          </ng-template>
-    </div>    
-</div>
-
   
 <div class="row align-items-center">
-    <div class="col-md-3">
+    <div class="col-md-3 col-1">
         <div class="linhaUm"></div>
         <div class="linhaDois"></div>
     </div>
-    <div class="col-md-6 col-sm-12">
+    <div class="col-md-6 col-10 fundo p-5 my-5">
+      <div class="dropdown" >
+        <button class="p-1 px-2 btn btn-outline-dark dropdown-toggle" style="float: right;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-trophy-fill fs-4" ></i>
+        </button>
+        <div class="dropdown-menu p-2">
+            <div *ngIf="trofeus.length > 0; else semTrofeu">
+                <ul>
+                    <li *ngFor="let trofeu of trofeus">
+                        <i class="bi bi-trophy-fill fs-6 me-1" style="color:#000000;"></i>
+                    <h5 >{{ trofeu.nome }}</h5>
+                    <p >{{ trofeu.requisitos }}</p>
+                    <hr class="dropdown-divider">
+                    </li>
+                </ul>    
+            </div>
+            <ng-template #semTrofeu>
+                <p>Você ainda não tem nenhum trofeu</p>
+              </ng-template>
+        </div>    
+    </div>
         <div *ngIf="metas.length > 0">
-        <h2 class="font-confortaa font-logo fs-2 mt-4 text-center">Metas do Usuário</h2>
+        <h2 class="font-confortaa fs-2">Metas do Usuário</h2>
+        
         <ul style="list-style: none;">
             
-            <li *ngFor="let meta of metas" class="meta my-5 p-4" >
-                <a (click)="deleteMeta()"><i class="bi bi-trash3 fs-4 px-2" style="float: right;"></i></a>
-                <h3 class="text-center">{{ meta.titulo }}</h3>
-                <p class="text-center">{{ meta.descricao }}</p>
+            <li *ngFor="let meta of metas" class="meta mt-5 p-4" >
+                <h3 class="text-center" style="color:#fff;">{{ meta.titulo }}</h3>
+                <p class="text-center" style="color:#fff;">{{ meta.descricao }}</p>
                 <ul>
                     <li *ngFor="let tarefa of tarefas">
+                      <hr style="color:#fff;">
                         <a (click)="concluido(tarefa)">
-                          <i [class]="tarefa.icone" class="p-2"></i>
-                          <h3 class="fs-5 pt-2">{{ tarefa.titulo}}</h3>
-                          <p>{{ tarefa.descricao }}</p>
+                          <i [class]="tarefa.icone" class="p-2" style="color:#fff;"></i>
+                          <h3 class="fs-5 pt-2" style="color:#fff;">{{ tarefa.titulo}}</h3>
+                          <p style="color:#fff;">{{ tarefa.descricao }}</p>
                         </a>
                     </li>
                 </ul>
                 <div class="progresso  rounded-pill">
-                    <div [style]="preenchimento" style="height: 1.5rem;" class="rounded-pill progressoI"> 
-                        <p [style]="porcentagem >= 50 ? 'color: #d9d9d9':''"><b>{{ porcentagem.toFixed(0) }}%</b></p>
+                    <div [style]="preenchimento" style="height: 1.5rem; background-color: #bbbbbb;" class="rounded-pill progressoI"> 
+                    <p style="color:#e9e9e9; text-shadow: 0px 0px 2.5px rgba(0, 0, 0, 1);"><b>{{ porcentagem.toFixed(0) }}%</b></p>
                     </div>
                 </div>
             </li>
         </ul>
         </div>
-        
+        <button (click)="deleteMeta()" class="btn btn-danger" style="float: right;"><i class="bi bi-trash3 fs-6 px-2" style="float: right; color: #fff;"></i> Apagar Meta</button>
           
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-1">
 
     </div>
 </div>

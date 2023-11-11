@@ -1,16 +1,33 @@
-<a routerLink="/metas"><i class="bi bi-arrow-90deg-left fs-3" style="color:#fff;"></i></a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-3" style="background-color: #363636; box-shadow: 0px 4px 8px #292929;">
+    <div class="container-fluid">
+      <a class="navbar-brand font-confortaa font-logo fs-3" routerLink="/metas" href="#">Objetivo+</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <button routerLink="/login" class="btn btn-light" type="submit"><i class="bi bi-box-arrow-left fs-5" > Sair</i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
     <div class="row align-items-center">
-        <div class="col-md">
+        <div class="col-md-3 col-10">
             <div class="linhaUm"></div>
             <div class="linhaDois"></div>
         </div>
-        <div class="col-md-6 col-sm-12">
-        <h2 class="font-logo font-confortaa text-center mt-5">Adicionar Objetivo</h2>
+        <div class="col-md-6 col-10 fundo p-5 mt-5">
+        <h2 class=" font-confortaa text-center ">Adicionar Objetivo</h2>
         <form (ngSubmit)="criarMeta()">
             <input type="text" id="titulo" class="w-100 mt-5  form-control" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
             <textarea id="descricao" [(ngModel)]="meta.descricao" class="px-2 mt-4 w-100  form-control" placeholder="Descreva seu objetivo de forma clara:" name="descricao" required></textarea>
-            <div class=" mt-4">
-                <input style="width: 25%; display: initial;" class="numero" type="text" id="prazo"  class=" form-control" placeholder="Prazo:" [(ngModel)]="meta.prazo" name="prazo" required >
+            <div class=" mt-4" >
+                <input style="width: 25%; display: initial;" class="numero form-control " type="text" id="prazo"  placeholder="Prazo:" [(ngModel)]="meta.Prazo" name="prazo" required >
                 <input type="button" value="Meses" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('mes')">
                 <input type="button" value="Anos" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('ano')"><br>
                 <div class="text-center">
@@ -22,7 +39,7 @@
             
         </form>
         </div>
-        <div class="col-md">
+        <div class="col-md-3 col-10">
 
         </div>
     </div>

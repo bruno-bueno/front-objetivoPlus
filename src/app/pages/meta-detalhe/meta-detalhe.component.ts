@@ -35,7 +35,7 @@ export class MetaDetalheComponent implements OnInit{
   iconeMarcado = "bi bi-check-square-fill";
   marcados=0;
   porcentagem!: number;
-  preenchimento = `background-color: #363636; width: ${this.porcentagem}%; `;
+  preenchimento = `background-color: #bbbbbb; width: ${this.porcentagem}%; `;
   resposta?: string;
   tarefa: any;
 
@@ -115,76 +115,110 @@ export class MetaDetalheComponent implements OnInit{
     }
     if (this.tarefa) {
       if (this.tarefa.icone == 'bi bi-check-square') {
-        await Swal.fire({
-          title: 'Conte um pouco sobre como foi realizar essa tarefa:',
-          input: 'text',
-          inputAttributes: {
-            autocapitalize: 'off',
-          },
-          showCancelButton: true,
-          confirmButtonText: 'Confirmar',
-          cancelButtonText: 'Cancelar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.resposta = result.value;
-            concluir.concluido=1;
-            this.marcados++;
-            this.tarefa.icone = 'bi bi-check-square-fill';
+        Swal.fire({
+          title: 'Carregando Pergunta de Confirmação',
+          didOpen: () => {
+            Swal.showLoading()
           }
-        });
+        })
+        this.tarefasService.verificaConcluidoTarefa(tarefas.id, this.token)
+          .subscribe(async (response: any) => {
+            Swal.close();
+            const resposta = await Swal.fire({
+              title: response.Pergunta,
+              input: "radio",
+              inputOptions: {
+                0: response.Alternativas[0],
+                1: response.Alternativas[1],
+                2: response.Alternativas[2],
+                3: response.Alternativas[3],
+                4: response.Alternativas[4]
+              },
+              showCancelButton: true,
+              confirmButtonText: 'Confirmar',
+              cancelButtonText: 'Cancelar',
+              
+            });
+
+            if (resposta.isConfirmed) {
+              const alternativaSelecionada = resposta.value;
+              if(alternativaSelecionada == response.Resposta){
+                concluir.concluido=1;
+                this.marcados++;
+                this.porcentagem=((100/this.tarefas.length)*this.marcados);
+                this.preenchimento += `width: ${this.porcentagem}%;`;
+                this.tarefa.icone = 'bi bi-check-square-fill';
+                this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token,this.porcentagem,this.id)
+                .subscribe(async (response: any) => {
+                  if (response) {
+                    Toast.fire({
+                      icon: 'success',
+                      title: response.resultado[0].nome,
+                      text: response.resultado[0].requisitos
+                    })
+                    console.log(response.resultado[0]);
+                    this.trofeus.push(response.resultado[0])
+                  }
+                },
+                (error: any) => {
+                  console.error("Ocorreu um erro:", error);
+                });
+              }else{
+                Toast.fire({
+                  title: "Acho que não",
+                  text: "Seu relato não bate com a meta"
+                })
+                concluir.concluido=0;
+              }
+            }
+
+          },
+            (error: any) => {
+              console.error("Ocorreu um erro:", error);
+            });
         
       } else {
         this.marcados--;
         this.tarefa.icone = 'bi bi-check-square';
-      } 
-    }
-    let porcento=((100/this.tarefas.length)*this.marcados);
-     
-    console.log(this.porcentagem);
-    console.log(concluir)
-    this.tarefasService.editarConcluidoTarefa(tarefas.id,concluir,this.token,porcento,this.id, this.resposta)
-    .subscribe(async (response: any) => {
-      if (response == false) {
-        Toast.fire({
-          icon: 'error',
-          title: "Acho que não",
-          text: "Seu relato não bate com a meta"
-        })
-        this.tarefa.icone = 'bi bi-check-square';
-      } else {
-        this.preenchimento += ` width: ${this.porcentagem}%;`;
-        this.porcentagem = porcento
-        Toast.fire({
-          icon: 'success',
-          title: response.resultado[0].nome,
-          text: response.resultado[0].requisitos
-        })
-        console.log(response.resultado[0]);
-        this.trofeus.push(response.resultado[0])
       }
-    },
-    (error: any) => {
-      console.error("Ocorreu um erro:", error);
-    });
+      
+    }
   }
 
   deleteMeta(){
-    Toast.fire({
-      icon: 'success',
-      title: 'Meta Deletada'
-    })
-    this.metasService.deletarMetas(this.id,this.token)
-    .subscribe((response: any) => {
-      if (response) {
-        console.log(response);
-        this.router.navigate(['/metas']);
-      } else {
-        console.error("Resposta vazia.");
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Não é possivel reverter isso!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Apagar!",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.metasService.deletarMetas(this.id,this.token)
+        .subscribe((response: any) => {
+          if (response) {
+            console.log(response);
+            Swal.fire({
+              title: "Meta Apagada!",
+              text: "Sua Meta Foi Apagada!",
+              icon: "success"
+            });
+            this.router.navigate(['/metas']);
+          } else {
+            console.error("Resposta vazia.");
+          }
+        },
+        (error: any) => {
+
+          console.error("Ocorreu um erro:", error);
+        });
+        
       }
-    },
-    (error: any) => {
-      console.error("Ocorreu um erro:", error);
     });
+    
   }
     
 

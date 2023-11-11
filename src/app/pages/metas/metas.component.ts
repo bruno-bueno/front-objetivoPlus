@@ -78,6 +78,9 @@ export class MetasComponent implements OnInit {
           console.log(testeTarefas.length)
           const porcentagem = (marcados / testeTarefas.length) * 100;
           this.larguras[id] = `${porcentagem.toFixed(0)}%`;
+          if(porcentagem >= 50){
+
+          }
           if (porcentagem === 100) {
             const metaConcluida = this.metas.find(meta => meta.id === id);
           

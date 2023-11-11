@@ -1,6 +1,3 @@
-
-
-
 .linhaDois{
     background: linear-gradient(180deg, #D90416 0%, #9B2630 98.44%);
     width: 4.45vw;
@@ -20,6 +17,14 @@
     right: 86vw;
     z-index: -2;
     top: 0;
+}
+
+.form-control{
+    background-color: #363636;
+    color: #fff;
+}
+.form-control::placeholder{
+    color: #d9d9d9;
 }
 
 @media screen and (max-width: 768px) {

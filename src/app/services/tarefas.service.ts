@@ -28,18 +28,25 @@ export class TarefasService {
     return this.http.get<ITarefa>(`${url}/${id}`,header);
   }
 
-  editarConcluidoTarefa(id: number,concluido: any, token?: string, quantidade?: number, idMeta?:number, argumento?:string){
+  editarConcluidoTarefa(id: number,concluido: any, token?: string, quantidade?: number, idMeta?:number){
     const url = `${this.apiUrl}tarefas/concluido`;
     const body = {
       concluido: concluido.concluido,
       quantidade: quantidade,
       idMeta: idMeta,
-      argumento: argumento
     };
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
     const header = { headers: headers };
     return this.http.put<ITarefa>(`${url}/${id}`,body, header);
+  }
+
+  verificaConcluidoTarefa(id: number, token?: string){
+    const url = `${this.apiUrl}tarefas/verifica`;
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+    const header = { headers: headers };
+    return this.http.get<ITarefa>(`${url}/${id}`, header);
   }
 
 }

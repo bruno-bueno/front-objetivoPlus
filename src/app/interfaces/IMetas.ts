@@ -4,5 +4,5 @@ export interface IMeta{
     titulo:string,
     descricao:string,
     concluido: number,
-    prazo: string
+    Prazo: string
 }
