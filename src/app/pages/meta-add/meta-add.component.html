@@ -26,16 +26,16 @@
         <form (ngSubmit)="criarMeta()">
             <input type="text" id="titulo" class="w-100 mt-5  form-control" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
             <textarea id="descricao" [(ngModel)]="meta.descricao" class="px-2 mt-4 w-100  form-control" placeholder="Descreva seu objetivo de forma clara:" name="descricao" required></textarea>
-            <div class=" mt-4" >
+            <div class=" mt-4" style="display: flex;">
                 <input style="width: 25%; display: initial;" class="numero form-control " type="text" id="prazo"  placeholder="Prazo:" [(ngModel)]="meta.Prazo" name="prazo" required >
                 <input type="button" value="Meses" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('mes')">
                 <input type="button" value="Anos" class="ms-2 btn btn-secondary" (click)="adicionarPrazo('ano')"><br>
-                <div class="text-center">
-                    <button type="submit" class="mt-4 btn btn-secondary">Gerar Objetivo</button>
-                </div>
+                
                 
             </div>
-            
+            <div class="text-center">
+              <button type="submit" class="mt-4 btn btn-secondary">Gerar Objetivo</button>
+          </div>
             
         </form>
         </div>

@@ -1,0 +1,30 @@
+/*img{
+    position: absolute;
+    margin-top: -3%;
+    margin-left: 40%;
+    width: 5rem;
+    rotate: 10deg;
+}*/
+@keyframes rotateAnimation {
+    0% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+    100% {
+      transform: rotate(-15deg);
+    }
+  }
+
+.progresso{
+    width: 90%;
+}
+
+img{
+    float: right;
+    width: 3.5rem;
+    margin-top: -8%;
+    animation: rotateAnimation 4s infinite;
+}
+

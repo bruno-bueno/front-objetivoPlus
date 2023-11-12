@@ -26,15 +26,16 @@
         <div *ngIf="metas.length > 0">
             <ul style="list-style: none;">
             <li *ngFor="let meta of metas" class="meta mt-5 p-3" (click)="redirecionarDetalhe(meta.id)">
-                <img src="../../../assets/trofeu_cheio-removebg-preview 3.png">
+                
                 <h6 class="fs-6" style="float: right; color:#e9e9e9;">{{ meta.Prazo }}</h6>
                 <h3 class="fs-4" style="color:#e9e9e9;">{{ meta.titulo }}</h3>
                 <p class="fs-7" style="color:#e9e9e9;">{{ meta.descricao }}</p>
-                <div class="progresso rounded-pill">
+                <div class="progresso rounded-pill" >
                 <p><b>{{larguras[meta.id!]}}</b></p>
                 <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#bbbbbb', 'height':'1.5rem'}" class="rounded-pill">   
                 </div>
                 </div>
+                <img src="assets/images/trofeuCheio.png">
             </li>
             </ul>
         </div>
