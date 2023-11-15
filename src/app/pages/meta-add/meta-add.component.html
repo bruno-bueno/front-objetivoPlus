@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
+            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluídos</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -17,11 +17,11 @@
     </div>
   </nav>
     <div class="row align-items-center">
-        <div class="col-md-3 col-10">
+        <div class="col-md-3 col-1">
             <div class="linhaUm"></div>
             <div class="linhaDois"></div>
         </div>
-        <div class="col-md-6 col-10 fundo p-5 mt-5">
+        <div class="col-md-6 col-10 fundo p-md-5 p-3 mt-5">
         <h2 class=" font-confortaa text-center ">Adicionar Objetivo</h2>
         <form (ngSubmit)="criarMeta()">
             <input type="text" id="titulo" class="w-100 mt-5  form-control" [(ngModel)]="meta.titulo" name="titulo" placeholder="Titulo do objetivo:" required>
@@ -39,7 +39,7 @@
             
         </form>
         </div>
-        <div class="col-md-3 col-10">
+        <div class="col-md-3 col-1">
 
         </div>
     </div>

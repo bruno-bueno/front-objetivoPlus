@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
+          <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluídos</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -22,14 +22,14 @@
     <div class="col-md-3 col-1">
       
     </div>
-    <div class="col-md-6 col-10 p-5 fundo my-5">
+    <div class="col-md-6 col-10 p-md-5 p-3 fundo my-5">
       <div style="float: right;">
         <button class="btn btn-secondary " routerLink="/meta-add">Adicionar Meta</button>  
       </div>
-      <h1 class="font-confortaa fs-1 mb-5" >Meus Objetivos</h1>
+      <h1 class="font-confortaa fs-1 mb-md-5 mb-3" >Meus Objetivos</h1>
         <div *ngIf="metas.length > 0">
             <ul style="list-style: none;">
-              <li *ngFor="let meta of metas" class="meta mt-5 p-3" (click)="redirecionarDetalhe(meta.id)">
+              <li *ngFor="let meta of metas" class="meta mt-md-5 mt-3 p-3" (click)="redirecionarDetalhe(meta.id)">
                 <h6 class="fs-6" style="float: right; color:#e9e9e9;">{{ meta.Prazo }}</h6>
                 <h3 class="fs-4" style="color:#e9e9e9;">{{ meta.titulo }}</h3>
                 <p class="fs-7" style="color:#e9e9e9;">{{ meta.descricao }}</p>

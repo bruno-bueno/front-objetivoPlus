@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluidos</a>
+            <a routerLink="/meta-finalizada" class="nav-link active fs-5" style="color:#fff;" aria-current="page" href="#">Objetivos Concluídos</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -19,20 +19,21 @@
 <div class="row align-items-center ">
 
     <div class="col-md-3 col-1">
-    
+      <div class="linhaUm"></div>
+      <div class="linhaDois"></div>
     </div>
-    <div class="col-md-6 col-10 p-5 fundo my-5 ">
-    <h2 class="font-confortaa fs-1 mb-5 ">Meus Objetivos Concluidos</h2>
+    <div class="col-md-6 col-10 p-md-5 p-3 fundo my-5 ">
+    <h2 class="font-confortaa fs-1 mb-md-5 mb-3">Meus Objetivos Concluídos</h2>
         <div *ngIf="metas.length > 0">
             <ul style="list-style: none;">
-            <li *ngFor="let meta of metas" class="meta mt-5 p-3" (click)="redirecionarDetalhe(meta.id)">
+            <li *ngFor="let meta of metas" class="meta mt-md-5 mt-3 p-3" (click)="redirecionarDetalhe(meta.id)">
                 
                 <h6 class="fs-6" style="float: right; color:#e9e9e9;">{{ meta.Prazo }}</h6>
                 <h3 class="fs-4" style="color:#e9e9e9;">{{ meta.titulo }}</h3>
                 <p class="fs-7" style="color:#e9e9e9;">{{ meta.descricao }}</p>
                 <div class="progresso rounded-pill" >
                 <p><b>{{larguras[meta.id!]}}</b></p>
-                <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#bbbbbb', 'height':'1.5rem'}" class="rounded-pill">   
+                <div  [ngStyle]="{ 'width': larguras[meta.id !== undefined ? meta.id : 0 ], 'background-color': '#bbbbbb', 'height':'1.5rem', 'text-align':'center'}" class="rounded-pill">   
                 </div>
                 </div>
                 <img src="assets/images/trofeuCheio.png">
