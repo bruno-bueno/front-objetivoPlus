@@ -52,7 +52,7 @@
                 <h3 class="text-center" style="color:#fff;">{{ meta.titulo }}</h3>
                 <p class="text-center" style="color:#fff;">{{ meta.descricao }}</p>
                 <ul>
-                    <li *ngFor="let tarefa of tarefas">
+                    <li *ngFor="let tarefa of tarefas" style="cursor:pointer;">
                       <hr style="color:#fff;">
                         <a (click)="concluido(tarefa)">
                           <i [class]="tarefa.icone" class="p-2" style="color:#fff;"></i>
